@@ -1,8 +1,8 @@
 # Music Visualiser Project
 
-Name:
+Name: Jamie Heffernan
 
-Student Number: 
+Student Number: C20483462
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
@@ -12,10 +12,44 @@ Student Number:
 - Check out the WaveForm and AudioBandsVisual for examples of how to call the Processing functions from other classes that are not subclasses of PApplet
 
 # Description of the assignment
+- This assignment is an interactive visualiser of an audio file using the Java Processing Library
+- For this project I chose to create a landscape of a peaceful day in nature
+- The music I chose is a Lo-Fi remix of songs from the video game series "The Legend of Zelda" a series I am very fond of
+- Each element in this program is synced to music so that the move in time with the beat
 
 # Instructions
+- To change the time of day within the file, move the mouse up and down
+- When the mouse is raised, the sun will rise and the sky will change to a ligher daytime colour
+- When the mouse is lowered, the sun will set and the sky will change to night and stars will start show in the night sky
 
 # How it works
+- The program works by importing the Java Processing and Minim Libraries
+- We use minim to pull data from the AudioStream and Processing to visualise it
+1. Grass Method
+- The grass method uses nexted loops and the built in function curve() to draw a blade of grass as a Spline Curve
+- Each blade takes the x coordinates (the index in the current loop) and the y coordinate (passed in the function call) as well as the starting and ending point of the curve
+- The tangent to the curve at the starting point is parallel to the line between the first control point and end of the curve
+- The tangent to the curve at the ending point is parallel to the line between the start point and second control point
+-
+2. Sky Method
+- The sky method works by first drawing a rectangle with a light blue colour
+- We then draw a large yellow ellipse on this rectangle with the X coordinate being the right side of the screen and the Y coordinate being equal to the mouse Y position
+- If the Y value of the sun lowers then the RGB value of the sky is changed to slowly fade from light blue, to dark blue and when the sun sets the colour will be black as it is nighttime
+- Once the sun has gone to sleep we can draw stars at random points in the sky, since the canvas is updated each frame the stars will automatically sync to the music
+- We also added a cloud of random ellipses with random colours to move right-to-left accross the sky
+- 
+3. Recursive Fractal Tree Method
+- This method uses recursion to draw a tree using fractals until the space between branches is less than 5 pixels
+- The method works by drawing an initial branch to a specified length
+- The top of this branch then splits in two and rotates the angle to draw the next branch by 45 degrees and stores this state using the push() function
+- Two more branches are then drawn mirrored to each other and then the pop() method is called to reset the position to draw the next branch to the end of the current branch at 45 degrees
+- This process continues until there are less than 4 pixels between each branch as well as once there are less than 50 pixels between branches the branches are drawn in a green colour rather than brown and gradually get thinner
+- Once all the branches have been generated we draw ellipses on these branches of varying sizes and green colours to give a rotating effect to the leaves
+-
+4. Audio Buffer Method 
+- The value of the audio buffer is calculated in a loop where it takes the current value of the audio buffer and lerps it to the index of the lerped buffer
+- In a loop of the audio buffer size a various connected lines and circles are drawn each frame at the index to the current position of the lerped audio buffer multiplied by the audio buffer multiplied by the sensitivity
+
 
 # What I am most proud of in the assignment
 
