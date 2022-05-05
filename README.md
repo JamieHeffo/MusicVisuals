@@ -16,8 +16,10 @@ Student Number: C20483462
 - For this project I chose to create a landscape of a peaceful day in nature
 - The music I chose is a Lo-Fi remix of songs from the video game series "The Legend of Zelda" a series I am very fond of
 - Each element in this program is synced to music so that the move in time with the beat
+- I undertook this assignment by alone as I wanted to challenge myself to create a visual I could be proud to call my own creation and to demonstrate my programming knowledge in future interviews in the Tech Industry
 
 # Instructions
+- To run the file load the entire project folder into VSC and press F5 to enter the debugger
 - To change the time of day within the file, move the mouse up and down
 - When the mouse is raised, the sun will rise and the sky will change to a ligher daytime colour
 - When the mouse is lowered, the sun will set and the sky will change to night and stars will start show in the night sky
@@ -25,11 +27,39 @@ Student Number: C20483462
 # How it works
 - The program works by importing the Java Processing and Minim Libraries
 - We use minim to pull data from the AudioStream and Processing to visualise it
+- The movements of the elements are linked to the audio file. The draw method updates the frame every time a change is detected in the Audio Buffer
 #1. Grass Method
 - The grass method uses nexted loops and the built in function curve() to draw a blade of grass as a Spline Curve
 - Each blade takes the x coordinates (the index in the current loop) and the y coordinate (passed in the function call) as well as the starting and ending point of the curve
 - The tangent to the curve at the starting point is parallel to the line between the first control point and end of the curve
 - The tangent to the curve at the ending point is parallel to the line between the start point and second control point
+```Java
+    //method to draw grass which will sync with audio
+    //y parameter is passed in through method call
+    public void drawGrass(int x){
+        
+        colorMode(RGB);
+        float base = x;
+        
+        for (int j = -100; j < 500; j+=50){
+            base += j;
+            for(int i = 0 ; i < ab.size(); i ++)
+            {
+                smooth();  
+                fill(95, 195, 20);
+                //draw curved line 
+                curve(j, (base + 40),
+                //starting position of tip + audio buffer * sensitivity
+                (j + 100) + ab.get(i) * 25 ,  (base + 60),
+                (j + 100), (base + 100),
+                (j + 60), (base + 120));
+
+                j += 10;
+
+            }//end nested for
+        }//end for
+    }//end method
+```
 -
 #2. Sky Method
 - The sky method works by first drawing a rectangle with a light blue colour
@@ -45,10 +75,86 @@ Student Number: C20483462
 - Two more branches are then drawn mirrored to each other and then the pop() method is called to reset the position to draw the next branch to the end of the current branch at 45 degrees
 - This process continues until there are less than 4 pixels between each branch as well as once there are less than 50 pixels between branches the branches are drawn in a green colour rather than brown and gradually get thinner
 - Once all the branches have been generated we draw ellipses on these branches of varying sizes and green colours to give a rotating effect to the leaves
--
+```Java
+	public void drawTree(){
+
+        translate (200, height);
+        strokeWeight(thickness + 10);
+        stroke(114, 92, 66);
+        branch(450);
+    }
+
+    public void branch(float length){
+        //draw tree trunk
+        line(0, 0, 0, -length);
+        //reposition 0
+        translate(0, -length);
+        //branch of tree
+        if(length > 50){
+            if(length > 4){
+                stroke(114, 92, 66);
+                push();
+                rotate(rotation);
+                strokeWeight(thickness + 2);
+                branch(length * 0.5f);
+                pop();
+                push();
+                rotate(-rotation);
+                strokeWeight(thickness + 2);
+                branch(length * 0.5f);     
+                pop();
+            }
+        }
+        else{
+            //Leaves of tree
+            if(length > 4){
+                
+                stroke(45, random(85,95), 39);
+                //add extra tree to branch
+                //store current state and return with push() and pop()
+                push();
+                rotate(rotation);
+                strokeWeight(thickness - 4);
+                branch(length * 0.6f);
+                //return to state
+                pop();
+                //repeat on opposite side
+                push();
+                rotate(-rotation);
+                strokeWeight(thickness - 4);
+                branch(length * 0.6f);
+                //draw rotating leaves of varying colour
+                circle(random(length, length + 5), 0, random(200,250));
+                pop();
+            }
+        }
+    }
+```
 #4. Audio Buffer Method 
 - The value of the audio buffer is calculated in a loop where it takes the current value of the audio buffer and lerps it to the index of the lerped buffer
 - In a loop of the audio buffer size a various connected lines and circles are drawn each frame at the index to the current position of the lerped audio buffer multiplied by the audio buffer multiplied by the sensitivity
+```Java
+    //method to visualise audio stream from file
+    public void drawBuffer(){
+        for(int i = 0 ; i < ab.size(); i ++)
+        {
+            sum += abs(ab.get(i));
+            lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.2f);
+        }
+
+        strokeWeight(2);
+        for(int j = 0; j < ab.size(); j+=20){
+            float cc = map(j, 0, ab.size(), 0, 255);
+            stroke(cc, 102, 0);
+            float f = lerpedBuffer[j] * halfH * 4.0f;
+            line(j, halfH, ab.size(), halfH);
+            line(j, halfH + f, j + 20, halfH - f);
+            line(j, halfH - f, j + 20, halfH + f);
+            circle(j, halfH + f, 10);
+            circle(j, halfH - f, 10);
+        }
+    }
+```
 
 
 # What I am most proud of in the assignment
@@ -59,52 +165,7 @@ me soon after which I thought was a much better solution.
 on paper it was simply a matter of doing the calculations and tweaking the shapes until I was satisfied with the final product.
 - I'm also quite proud of the sun tracking the colour of the sky as I had originally been trying to map the background colour from a black, to red, to blue colour and updating this based on the mapped mouse position but a much simpler approach was to find a nice sky blue colour with 
 neutral red and green attributes which could simply be lowered and mapped to a rectangle drawn above the grass.
-# Markdown Tutorial
 
-This is *emphasis*
-
-This is a bulleted list
-
-- Item
-- Item
-
-This is a numbered list
-
-1. Item
-1. Item
-
-This is a [hyperlink](http://bryanduggan.org)
-
-# Headings
-## Headings
-#### Headings
-##### Headings
-
-This is code:
-
-```Java
-public void render()
-{
-	ui.noFill();
-	ui.stroke(255);
-	ui.rect(x, y, width, height);
-	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
-	ui.text(text, x + width * 0.5f, y + height * 0.5f);
-}
-```
-
-So is this without specifying the language:
-
-```
-public void render()
-{
-	ui.noFill();
-	ui.stroke(255);
-	ui.rect(x, y, width, height);
-	ui.textAlign(PApplet.CENTER, PApplet.CENTER);
-	ui.text(text, x + width * 0.5f, y + height * 0.5f);
-}
-```
 
 This is an image using a relative URL:
 
