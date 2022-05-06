@@ -28,6 +28,7 @@ Student Number: C20483462
 - The program works by importing the Java Processing and Minim Libraries
 - We use minim to pull data from the AudioStream and Processing to visualise it
 - The movements of the elements are linked to the audio file. The draw method updates the frame every time a change is detected in the Audio Buffer
+
 #1. Grass Method
 - The grass method uses nexted loops and the built in function curve() to draw a blade of grass as a Spline Curve
 - Each blade takes the x coordinates (the index in the current loop) and the y coordinate (passed in the function call) as well as the starting and ending point of the curve
@@ -67,7 +68,7 @@ Student Number: C20483462
 - If the Y value of the sun lowers then the RGB value of the sky is changed to slowly fade from light blue, to dark blue and when the sun sets the colour will be black as it is nighttime
 - Once the sun has gone to sleep we can draw stars at random points in the sky, since the canvas is updated each frame the stars will automatically sync to the music
 - We also added a cloud of random ellipses with random colours to move right-to-left accross the sky
-- 
+
 #3. Recursive Fractal Tree Method
 - This method uses recursion to draw a tree using fractals until the space between branches is less than 5 pixels
 - The method works by drawing an initial branch to a specified length
@@ -169,5 +170,5 @@ neutral red and green attributes which could simply be lowered and mapped to a r
 
 -Video Demonstration of the Assignment Running
 
-[![YouTube](https://youtu.be/Abt9Nh6MSZg)
+[![YouTube](https:img.//youtu.be/Abt9Nh6MSZg)
 
