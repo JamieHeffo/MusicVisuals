@@ -170,5 +170,5 @@ neutral red and green attributes which could simply be lowered and mapped to a r
 
 -Video Demonstration of the Assignment Running
 
-[![YouTube](https:img.//youtu.be/Abt9Nh6MSZg)
+[![YouTube]](https://youtu.be/Abt9Nh6MSZg)
 
