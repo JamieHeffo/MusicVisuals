@@ -117,9 +117,6 @@ public class Visualiser extends PApplet
         ellipse(sunX, mouseY, sunsize, sunsize);
 
         //draw clouds
-        
-        
-        //tint(random(0, 255), random(0, 128));
         ellipse(cloudX, cloudY, 100, 100);
         for(int i = 0; i < 80; i++){
             float colour = random(245, 255);
@@ -133,6 +130,8 @@ public class Visualiser extends PApplet
         }
         
     }
+
+    //Draw method for the tree
     public void drawTree(){
 
         translate (200, height);
@@ -141,6 +140,7 @@ public class Visualiser extends PApplet
         branch(450);
     }
 
+    //Method to recursively draw a fractal tree
     public void branch(float length){
         //draw tree trunk
         line(0, 0, 0, -length);
@@ -162,6 +162,7 @@ public class Visualiser extends PApplet
                 pop();
             }
         }
+        //Once the branches reach a certain size make them green and draw leaves
         else{
             //Leaves of tree
             if(length > 4){
@@ -187,7 +188,7 @@ public class Visualiser extends PApplet
         }
     }
 
-
+    //Method for user to pause song with spacebar
     public void keyPressed() {
 		if (key >= '0' && key <= '9') {
 			mode = key - '0';
@@ -197,7 +198,6 @@ public class Visualiser extends PApplet
                 audioPlayer.pause();
             } 
             else {
-                audioPlayer.rewind();
                 audioPlayer.play();
             }
         }
@@ -211,10 +211,8 @@ public class Visualiser extends PApplet
 
     public void setup()
     {
-        //frameRate(60);
+        //create object of the song and play
         minim = new Minim(this);
-        
-
         audioPlayer = minim.loadFile(song, 2048);
         audioPlayer.play();
         ab = audioPlayer.mix;
@@ -236,7 +234,7 @@ public class Visualiser extends PApplet
 
         //draw grass at different points accross the screen
         for(int i = 1100; i < 1500; i += 45){
-            drawGrass(i);
+            drawGrass(i);//i parameter passed to function for location to start drawing
         }
 
         //draw the tree

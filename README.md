@@ -167,24 +167,7 @@ on paper it was simply a matter of doing the calculations and tweaking the shape
 neutral red and green attributes which could simply be lowered and mapped to a rectangle drawn above the grass.
 
 
-This is an image using a relative URL:
+-Video Demonstration of the Assignment Running
 
-![An image](images/p8.png)
-
-This is an image using an absolute URL:
-
-![A different image](https://bryanduggandotorg.files.wordpress.com/2019/02/infinite-forms-00045.png?w=595&h=&zoom=2)
-
-This is a youtube video:
-
-[![YouTube](http://img.youtube.com/vi/J2kHSSFA4NU/0.jpg)](https://www.youtube.com/watch?v=J2kHSSFA4NU)
-
-This is a table:
-
-| Heading 1 | Heading 2 |
-|-----------|-----------|
-|Some stuff | Some more stuff in this column |
-|Some stuff | Some more stuff in this column |
-|Some stuff | Some more stuff in this column |
-|Some stuff | Some more stuff in this column |
+[![YouTube](https://youtu.be/Abt9Nh6MSZg)
 
