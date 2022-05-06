@@ -4,13 +4,6 @@ Name: Jamie Heffernan
 
 Student Number: C20483462
 
-## Instructions
-- Fork this repository and use it a starter project for your assignment
-- Create a new package named your student number and put all your code in this package.
-- You should start by creating a subclass of ie.tudublin.Visual
-- There is an example visualiser called MyVisual in the example package
-- Check out the WaveForm and AudioBandsVisual for examples of how to call the Processing functions from other classes that are not subclasses of PApplet
-
 # Description of the assignment
 - This assignment is an interactive visualiser of an audio file using the Java Processing Library
 - For this project I chose to create a landscape of a peaceful day in nature
@@ -61,7 +54,7 @@ Student Number: C20483462
         }//end for
     }//end method
 ```
--
+
 #2. Sky Method
 - The sky method works by first drawing a rectangle with a light blue colour
 - We then draw a large yellow ellipse on this rectangle with the X coordinate being the right side of the screen and the Y coordinate being equal to the mouse Y position
@@ -168,7 +161,7 @@ on paper it was simply a matter of doing the calculations and tweaking the shape
 neutral red and green attributes which could simply be lowered and mapped to a rectangle drawn above the grass.
 
 
--Video Demonstration of the Assignment Running
+#Video Demonstration of the Assignment Running
 
-[![YouTube]https://img.youtu.be/Abt9Nh6MSZg.jpg)](https://youtu.be/Abt9Nh6MSZg)
+[![YouTube]](https://youtu.be/Abt9Nh6MSZg)
 

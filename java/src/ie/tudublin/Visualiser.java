@@ -236,7 +236,7 @@ public class Visualiser extends PApplet
         for(int i = 1100; i < 1500; i += 45){
             drawGrass(i);//i parameter passed to function for location to start drawing
         }
-
+        
         //draw the tree
         drawTree();      
 
