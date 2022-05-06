@@ -61,7 +61,49 @@ Student Number: C20483462
 - If the Y value of the sun lowers then the RGB value of the sky is changed to slowly fade from light blue, to dark blue and when the sun sets the colour will be black as it is nighttime
 - Once the sun has gone to sleep we can draw stars at random points in the sky, since the canvas is updated each frame the stars will automatically sync to the music
 - We also added a cloud of random ellipses with random colours to move right-to-left accross the sky
+```Java
+public void drawSky(){
 
+        fill(0, g, b);
+        noStroke();
+        rect(0,0, 2800, 1200);
+
+        //update background colour in accordance with sun position
+        g = - mouseY + 189 * 4.5f;
+        b = - mouseY + 254 * 4.5f;
+
+        //if the sun goes away, the stars come out to play
+        //Since the screen updates with the beat (thanks grass)
+        //Stars will be drawn randomly in time with the song
+        if(g <= 0 || b <= 0){
+            fill(255);
+            noStroke();
+            //draw 50 stars in random positions each time the frame is updated
+            for(int i = 0; i < 50; i++){
+                ellipse(random(width), random(height), 4, 4);
+            }
+        }
+        
+        //Draw sun
+        fill(250, 253, 15);
+        int sunsize = 500;
+        ellipse(sunX, mouseY, sunsize, sunsize);
+
+        //draw clouds
+        ellipse(cloudX, cloudY, 100, 100);
+        for(int i = 0; i < 80; i++){
+            float colour = random(245, 255);
+            fill(colour);
+             ellipse(random(cloudX - 200, cloudX + 200), random(cloudY - 30, cloudY + 30), cloudSize, cloudSize);
+             cloudX -= 0.1f;
+
+            if(cloudX <= - 20){
+                 cloudX = width;
+            } 
+        }
+        
+    }
+```
 #3. Recursive Fractal Tree Method
 - This method uses recursion to draw a tree using fractals until the space between branches is less than 5 pixels
 - The method works by drawing an initial branch to a specified length
